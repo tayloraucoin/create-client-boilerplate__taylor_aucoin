@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import React from "react";
+import styled from "styled-components";
 
 import {
   c_grey_dark,
   c_white
-} from '../../../constants/styles/colors';
-import { t_font_family } from '../../../constants/styles/typography';
+} from "../../../constants/styles/colors";
+import { t_font_family } from "../../../constants/styles/typography";
 
 const Root = styled.div`
   align-items: center;
@@ -28,7 +28,8 @@ const Section = styled.div`
   align-items: center;
   display: flex;
 
-  a, h3 {
+  a,
+  h3 {
     color: ${c_white};
     height: fit-content;
     margin: 0 2rem;
@@ -36,15 +37,11 @@ const Section = styled.div`
   }
 `;
 
-export default ({ history }) => (
+export default () => (
   <Root id="navbar">
     <Section>
-      <Link to="/">
-        Home
-      </Link>
-      <Link to="/about">
-        About
-      </Link>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
     </Section>
     <Section>
       <h3>Welcome</h3>

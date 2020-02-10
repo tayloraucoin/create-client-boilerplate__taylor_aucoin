@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { c_black, c_white } from '../../../constants/styles/colors';
+import { c_black, c_white } from "../../../constants/styles/colors";
 import {
   t_font_family,
   t_font_family_title
-} from '../../../constants/styles/typography';
-import Navbar from '../../nav/Navbar/Navbar';
-import getColumns from './utils/getColumns';
+} from "../../../constants/styles/typography";
+import Navbar from "../../nav/Navbar/Navbar";
+import getColumns from "./utils/getColumns";
 
 const StyledPage = styled.div`
   background-color: ${c_white};
@@ -38,7 +38,7 @@ const Inner = styled.div`
 
 const Columns = styled.div`
   bottom: 0;
-  display: ${props => (props.visible ? 'flex' : 'none')};
+  display: ${props => (props.visible ? "flex" : "none")};
   height: 100%;
   justify-content: space-between;
   left: 0;
@@ -53,9 +53,7 @@ export default ({ children, history }) => (
     <Navbar history={history} />
     <Inner>
       {children}
-      <Columns visible={false}>
-        {getColumns()}
-      </Columns>
+      <Columns visible={false}>{getColumns()}</Columns>
     </Inner>
   </StyledPage>
 );

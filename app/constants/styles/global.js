@@ -1,12 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
-import { c_black } from './colors';
+import { c_black } from "./colors";
 import {
   t_font_family,
   t_font_family_title,
   t_letter_spacing,
   t_letter_spacing_title
-} from './typography';
+} from "./typography";
 
 export const CssBody = createGlobalStyle`
   html {

@@ -1,11 +1,8 @@
-import './constants/styles/importer.scss';
+import "./constants/styles/importer.scss";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import App from './pages/_app';
+import App from "./pages/_app";
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('application')
-);
+ReactDOM.render(<App />, document.getElementById("application"));

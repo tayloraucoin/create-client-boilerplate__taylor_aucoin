@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import React from 'react';
+import styled from "styled-components";
+import React from "react";
 
-import { d_columns } from '../../../../constants/styles/dimensions';
+import { d_columns } from "../../../../constants/styles/dimensions";
 
 const Column = styled.div`
   background-color: #a9a9a9;
