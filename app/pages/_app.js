@@ -3,6 +3,7 @@ import { createBrowserHistory } from "history";
 import React from "react";
 
 import { CssBody } from "../constants/styles/global";
+import Modal from "../components/layout/Modal/Modal";
 import Page from "../components/layout/Page/Page";
 import Routing from "./_routing";
 
@@ -14,5 +15,6 @@ export default () => (
     <Page>
       <Routing />
     </Page>
+    <Modal />
   </Router>
 );

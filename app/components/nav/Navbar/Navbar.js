@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 
-import {
-  c_grey_dark,
-  c_white
-} from "../../../constants/styles/colors";
+import { c_grey_dark, c_white } from "../../../constants/styles/colors";
 import { t_font_family } from "../../../constants/styles/typography";
 
 const Root = styled.div`

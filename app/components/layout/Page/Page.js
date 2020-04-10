@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ReactNotification from "react-notifications-component";
 
 import { c_black, c_white } from "../../../constants/styles/colors";
 import {
@@ -50,6 +51,7 @@ const Columns = styled.div`
 
 export default ({ children, history }) => (
   <StyledPage>
+    <ReactNotification />
     <Navbar history={history} />
     <Inner>
       {children}

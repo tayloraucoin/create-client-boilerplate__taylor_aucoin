@@ -2,16 +2,18 @@ import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import React from "react";
 import styled, { css } from "styled-components";
 
-import { FormatStyling } from "../../../constants/styles/format";
+import { FormatStyles } from "../../../constants/styles/format";
 import {
   c_black,
-  c_grey_dark,
+  c_brand_primary,
+  c_brand_secondary,
   c_grey_light,
-  c_grey_medium
+  c_grey_medium,
+  c_white
 } from "../../../constants/styles/colors";
 import ComponentLabel from "../../display/ComponentLabel/ComponentLabel";
 import ComponentMessage from "../../display/ComponentMessage/ComponentMessage";
-import colorHexRGB from "../../../utils/colorHexRGB";
+import colorHexRGB from "../../../utils/color-hex-rgb";
 import getMenuItems from "./utils/getMenuItems";
 import getSelectedText from "./utils/getSelectedText";
 
@@ -31,12 +33,12 @@ const DisabledStyle = css`
   }
 
   .selectedText {
-    box-shadow: 0 0 1px ${c_grey_dark};
+    box-shadow: 0 0 1px ${c_brand_primary};
   }
 `;
 
 const NavbarStyle = css`
-  background-color: ${c_grey_dark};
+  background-color: ${c_brand_primary};
   margin-bottom: 0;
   min-width: 3rem;
 
@@ -45,7 +47,7 @@ const NavbarStyle = css`
   }
 
   .input {
-    background-color: ${c_grey_dark};
+    background-color: ${c_brand_primary};
   }
 
   .menu {
@@ -67,7 +69,7 @@ const Root = styled.div`
   ${props => props.borderless && BorderlessStyle};
   ${props => props.disabled && DisabledStyle};
   ${props => props.navbar && NavbarStyle};
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
 const Input = styled.div`
@@ -83,7 +85,7 @@ const Input = styled.div`
   position: relative;
   width: 100%;
 
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
 const SelectedTextOpenStyle = css`
@@ -100,20 +102,28 @@ const SelectedTextPlaceholderStyle = css`
 `;
 
 const SelectedTextNavbarStyle = css`
-  border-color: rgb(${colorHexRGB(c_grey_light, "rgb")}, 0.8);
+  border-color: rgb(${colorHexRGB(c_brand_secondary, "rgb")}, 0.8);
 `;
 
 const SelectedText = styled.div`
   align-items: center;
+  background-color: ${props =>
+    props.colorPallate && props.colorPallate.background
+      ? props.colorPallate.background
+      : c_white};
   border-radius: 4px;
-  box-shadow: 0 0 2.5px ${c_grey_dark};
+  box-shadow: 0 0 2.5px ${c_brand_primary};
   box-sizing: border-box;
+  color: ${props =>
+    props.colorPallate && props.colorPallate.font && props.colorPallate.font};
   display: flex;
   height: 41px;
   justify-content: space-between;
   padding: 8px 0.75rem 6px;
   position: relative;
   width: 100%;
+
+  ${FormatStyles};
 
   ${props => props.navbar && SelectedTextNavbarStyle};
   ${props => props.open && SelectedTextOpenStyle};
@@ -125,9 +135,10 @@ const InputText = styled.span`
 `;
 
 const Menu = styled.div`
+  background-color: ${c_white};
   border: 1px solid ${c_grey_light};
   border-color: ${props =>
-    props.navbar && props.optionsLength ? c_grey_light : c_grey_light};
+    props.navbar && props.optionsLength ? c_brand_secondary : c_grey_light};
   border-top: 1px solid ${props => (props.navbar ? "inherit" : "none")};
   height: fit-content;
   max-height: 320px;
@@ -139,25 +150,38 @@ const Menu = styled.div`
   z-index: 10;
 `;
 
-export default ({
-  disabled,
-  fieldName,
-  label,
-  messages,
-  multipleChoice,
-  name,
-  navbar,
-  onChange,
-  onOpen,
-  open,
-  options,
-  placeholder,
-  required,
-  small,
-  selected,
-  styleProperties,
-  title
-}) => {
+export default props => {
+  const {
+    disabled,
+    fieldName,
+    highlighted,
+    label,
+    messages,
+    multipleChoice,
+    name,
+    navbar,
+    onChange,
+    onOpen,
+    open,
+    options,
+    placeholder,
+    required,
+    small,
+    selected,
+    title
+  } = props;
+
+  const styleProps = {
+    fullSize: props.fullSize,
+    half: props.half,
+    lastBottom: props.lastBottom,
+    lastRight: props.lastRight,
+    marginBottom: props.marginBottom,
+    marginRight: props.marginRight,
+    noMargin: props.noMargin,
+    small: props.small
+  };
+
   const optionName = fieldName || "name";
   let optionsList = [];
 
@@ -178,11 +202,15 @@ export default ({
   }
 
   return (
-    <Root disabled={disabled} {...styleProperties} navbar={navbar}>
+    <Root {...styleProps} disabled={disabled} navbar={navbar}>
       {label && <ComponentLabel required={required}>{label}</ComponentLabel>}
       <Input className="input" small={small}>
         <SelectedText
           className="selectedText"
+          colorPallate={
+            selected && options.find(option => option.name === selected)?.colors
+          }
+          highlighted={highlighted}
           navbar={navbar}
           onClick={() =>
             !disabled &&

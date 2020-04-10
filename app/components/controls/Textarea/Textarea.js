@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-import { FormatStyling } from "../../../constants/styles/format";
+import { FormatStyles } from "../../../constants/styles/format";
 import { c_grey_dark } from "../../../constants/styles/colors";
 import ComponentLabel from "../../display/ComponentLabel/ComponentLabel";
 import ComponentMessage from "../../display/ComponentMessage/ComponentMessage";
@@ -32,7 +32,7 @@ const Root = styled.div`
 
   ${props => props.tall && TallStyle};
   ${props => props.tallExtra && ExtraTallStyle};
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
 // const TooltipInfo = styled.div`
@@ -61,43 +61,60 @@ const TextareaBar = styled.textarea`
   width: 100%;
 `;
 
-export default ({
-  autocomplete,
-  label,
-  messages,
-  name,
-  onChange,
-  onKeyPress,
-  placeholder,
-  required,
-  styleProperties,
-  type,
-  value
-}) => (
-  <Root {...styleProperties}>
-    {label && <ComponentLabel required={required}>{label}</ComponentLabel>}
-    <TextareaBar
-      autoComplete={autocomplete}
-      className="textareaBar"
-      name={name}
-      onChange={event =>
-        onChange({
-          name: event.target.name,
-          value: event.target.value
-        })
-      }
-      onKeyPress={onKeyPress ? event => onKeyPress(event) : null}
-      placeholder={placeholder}
-      type={type || "text"}
-      value={value || ""}
-    />
-    {messages &&
-      messages.length &&
-      messages.map((message, index) => (
-        <ComponentMessage key={index} message={message} />
-      ))}
-  </Root>
-);
+export default props => {
+  const {
+    autocomplete,
+    label,
+    messages,
+    name,
+    onChange,
+    onKeyPress,
+    placeholder,
+    required,
+    type,
+    value
+  } = props;
+
+  const styleProps = {
+    fullSize: props.fullSize,
+    half: props.half,
+    largeWidth: props.largeWidth,
+    lastBottom: props.lastBottom,
+    lastRight: props.lastRight,
+    marginBottom: props.marginBottom,
+    marginRight: props.marginRight,
+    noMargin: props.noMargin,
+    small: props.small,
+    tall: props.tall,
+    tallExtra: props.tallExtra
+  };
+
+  return (
+    <Root {...styleProps}>
+      {label && <ComponentLabel required={required}>{label}</ComponentLabel>}
+      <TextareaBar
+        autoComplete={autocomplete}
+        className="textareaBar"
+        name={name}
+        onChange={event =>
+          onChange({
+            name: event.target.name,
+            value: event.target.value
+          })
+        }
+        onKeyPress={onKeyPress ? event => onKeyPress(event) : null}
+        placeholder={placeholder}
+        type={type || "text"}
+        value={value || ""}
+      />
+      {messages &&
+        messages.length &&
+        messages.map((message, index) => (
+          <ComponentMessage key={index} message={message} />
+        ))}
+    </Root>
+  );
+};
 
 /*
 <Tooltip interactive title={ tooltipInfo }>

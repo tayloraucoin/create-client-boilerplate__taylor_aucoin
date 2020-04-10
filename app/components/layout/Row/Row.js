@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FormatStyling } from "../../../constants/styles/format";
+import { FormatStyles } from "../../../constants/styles/format";
 
 const Root = styled.div`
   align-items: center;
@@ -9,9 +9,24 @@ const Root = styled.div`
   flex-wrap: wrap;
   width: 100%;
 
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
-export default ({ children, styleProperties }) => (
-  <Root {...styleProperties}>{children}</Root>
-);
+export default props => {
+  const { children } = props;
+
+  const styleProps = {
+    alignTop: props.alignTop,
+    half: props.half,
+    largeWidth: props.largeWidth,
+    lastBottom: props.lastBottom,
+    lastRight: props.lastRight,
+    marginBottom: props.marginBottom,
+    marginSkinny: props.marginSkinny,
+    marginRight: props.marginRight,
+    marginTop: props.marginTop,
+    noMargin: props.noMargin
+  };
+
+  return <Root {...styleProps}>{children}</Root>;
+};

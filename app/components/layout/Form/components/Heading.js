@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import {
-  c_grey_dark,
-  c_grey_light
-} from "../../../../constants/styles/colors";
+import { c_grey_dark, c_grey_light } from "../../../../constants/styles/colors";
 
 const Root = styled.div`
   align-item: center;
