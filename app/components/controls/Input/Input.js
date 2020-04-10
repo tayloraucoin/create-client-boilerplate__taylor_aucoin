@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FormatStyling } from "../../../constants/styles/format";
+import { FormatStyles } from "../../../constants/styles/format";
 import { c_grey_dark } from "../../../constants/styles/colors";
 import ComponentLabel from "../../display/ComponentLabel/ComponentLabel";
 import ComponentMessage from "../../display/ComponentMessage/ComponentMessage";
@@ -13,7 +13,7 @@ const Root = styled.div`
   position: relative;
   width: 12rem;
 
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
 const InputBar = styled.input`
@@ -27,20 +27,33 @@ const InputBar = styled.input`
   width: 100%;
 `;
 
-export default ({
-  autocomplete,
-  label,
-  messages,
-  name,
-  onChange,
-  onKeyPress,
-  onKeyPressEnter,
-  placeholder,
-  required,
-  styleProperties,
-  type,
-  value
-}) => {
+export default props => {
+  const {
+    autocomplete,
+    label,
+    messages,
+    name,
+    onChange,
+    onKeyPress,
+    onKeyPressEnter,
+    placeholder,
+    required,
+    type,
+    value
+  } = props;
+
+  const styleProps = {
+    fullSize: props.fullSize,
+    half: props.half,
+    largeWidth: props.largeWidth,
+    lastBottom: props.lastBottom,
+    lastRight: props.lastRight,
+    marginBottom: props.marginBottom,
+    marginRight: props.marginRight,
+    noMargin: props.noMargin,
+    small: props.small
+  };
+
   const handleKeyPress = e => {
     if (e.key === "Enter") {
       onKeyPressEnter();
@@ -48,7 +61,7 @@ export default ({
   };
 
   return (
-    <Root {...styleProperties}>
+    <Root {...styleProps}>
       {label && <ComponentLabel required={required}>{label}</ComponentLabel>}
       <InputBar
         autoComplete={autocomplete}

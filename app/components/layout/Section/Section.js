@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FormatStyling } from "../../../constants/styles/format";
+import { FormatStyles } from "../../../constants/styles/format";
 import { c_grey_light } from "../../../constants/styles/colors";
 
 const Root = styled.div`
@@ -11,7 +11,7 @@ const Root = styled.div`
   margin-bottom: ${props => props.last && 0};
   width: 100%;
 
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
 const Header = styled.div`

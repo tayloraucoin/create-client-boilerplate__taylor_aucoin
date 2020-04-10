@@ -27,3 +27,9 @@ export default {
     mobileSmall: `(max-width: ${sizes.width.mobileSmall}px)`
   }
 };
+
+export const desktopMinWidth = 1025;
+export const tabletProWidth = 1024;
+export const tabletWidth = 768;
+export const phabletWidth = 600;
+export const mobileWidth = 415;

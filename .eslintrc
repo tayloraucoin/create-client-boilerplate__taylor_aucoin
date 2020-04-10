@@ -1,11 +1,5 @@
 {
   "ignorePatterns": [".next/", "out/", "node_modules/"],
-  "globals": {
-    "cy": true,
-    "_qxe": true,
-    "_qxe_ready_send": true,
-    "ga": true
-  },
   "env": {
     "browser": true,
     "commonjs": true,
@@ -31,7 +25,6 @@
       "jsx": true,
       "modules": true
     },
-    "ecmaVersion": 2019,
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },

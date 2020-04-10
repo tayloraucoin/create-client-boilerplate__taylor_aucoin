@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 import {
-  c_grey_dark,
-  c_grey_light
+  c_brand_primary,
+  c_brand_light
 } from "../../../../constants/styles/colors";
 
 const Root = styled.div`
   align-item: center;
-  background-color: ${c_grey_dark};
-  color: ${c_grey_light};
+  background-color: ${c_brand_primary};
+  color: ${c_brand_light};
   display: flex;
   padding: 3rem 4rem;
   width: 100%;

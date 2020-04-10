@@ -1,12 +1,11 @@
+import Geosuggest from "react-geosuggest";
 import React from "react";
 import styled, { css } from "styled-components";
 
-import Geosuggest from "react-geosuggest";
-
-import { FormatStyling, f_half_width } from "../../../constants/styles/format";
+import { FormatStyles, f_half_width } from "../../../constants/styles/format";
 import {
   c_black,
-  c_grey_dark,
+  c_brand_primary,
   c_off_white
 } from "../../../constants/styles/colors";
 import {
@@ -49,7 +48,7 @@ const Root = styled.div`
   .geosuggest__input {
     border: 0;
     border-radius: 4px;
-    box-shadow: 0 0 2.5px ${c_grey_dark};
+    box-shadow: 0 0 2.5px ${c_brand_primary};
     color: ${c_black};
     cursor: pointer;
     display: flex;
@@ -74,7 +73,7 @@ const Root = styled.div`
 
   .geosuggest__suggests {
     background-color: white;
-    box-shadow: 0 0 2.5px ${c_grey_dark};
+    box-shadow: 0 0 2.5px ${c_brand_primary};
     border-top: none;
     margin-top: 8px;
     min-width: 12rem;
@@ -90,7 +89,7 @@ const Root = styled.div`
   }
 
   .geosuggest__item--active {
-    background: ${c_grey_dark};
+    background: ${c_brand_primary};
     color: white;
   }
 
@@ -111,21 +110,32 @@ const Root = styled.div`
 
   ${props => props.half && HalfStyle};
   ${props => props.open && OpenStyle};
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
-export default ({
-  initialValue,
-  label,
-  name,
-  onChange,
-  placeholder,
-  required,
-  open,
-  styleProperties,
-  types,
-  value
-}) => {
+export default props => {
+  const {
+    initialValue,
+    label,
+    name,
+    onChange,
+    placeholder,
+    required,
+    open,
+    types,
+    value
+  } = props;
+
+  const styleProps = {
+    fullSize: props.fullSize,
+    half: props.half,
+    lastBottom: props.lastBottom,
+    lastRight: props.lastRight,
+    marginBottom: props.marginBottom,
+    marginRight: props.marginRight,
+    noMargin: props.noMargin
+  };
+
   const handleNullChange = value => {
     if (!value) {
       onChange({
@@ -145,7 +155,7 @@ export default ({
   };
 
   return (
-    <Root {...styleProperties} className="geosuggestDropdown" open={open}>
+    <Root {...styleProps} className="geosuggestDropdown" open={open}>
       {label && <ComponentLabel required={required}>{label}</ComponentLabel>}
       <Geosuggest
         autoActivateFirstSuggest

@@ -5,8 +5,8 @@ import React from "react";
 import moment from "moment";
 import styled from "styled-components";
 
-import { FormatStyling } from "../../../constants/styles/format";
-import { c_grey_dark } from "../../../constants/styles/colors";
+import { FormatStyles } from "../../../constants/styles/format";
+import { c_brand_primary } from "../../../constants/styles/colors";
 import ComponentLabel from "../../display/ComponentLabel/ComponentLabel";
 
 const Root = styled.div`
@@ -15,7 +15,7 @@ const Root = styled.div`
   input {
     border: 0;
     border-radius: 0.28571429rem;
-    box-shadow: 0 0 2.5px ${c_grey_dark};
+    box-shadow: 0 0 2.5px ${c_brand_primary};
     box-sizing: border-box;
     color: rgba(0, 0, 0, 0.87);
     height: 42.5px;
@@ -36,19 +36,28 @@ const Root = styled.div`
     }
   }
 
-  ${FormatStyling};
+  ${FormatStyles};
 `;
 
-export default ({
-  dateFormat,
-  label,
-  name,
-  onChange,
-  required,
-  selected,
-  showYearDropdown,
-  styleProperties
-}) => {
+export default props => {
+  const {
+    dateFormat,
+    label,
+    name,
+    onChange,
+    required,
+    selected,
+    showYearDropdown
+  } = props;
+
+  const styleProps = {
+    fullSize: props.fullSize,
+    half: props.half,
+    last: props.last,
+    marginBottom: props.marginBottom,
+    noMargin: props.noMargin
+  };
+
   const onChangeDate = date => {
     onChange({
       name,
@@ -57,7 +66,7 @@ export default ({
   };
 
   return (
-    <Root {...styleProperties}>
+    <Root {...styleProps}>
       {label && <ComponentLabel required={required}>{label}</ComponentLabel>}
       <DatePicker
         dateFormat={dateFormat}
