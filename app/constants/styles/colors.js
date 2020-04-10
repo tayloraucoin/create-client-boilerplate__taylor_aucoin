@@ -1,8 +1,15 @@
 import { css } from "styled-components";
 
+/* Official brand theme color palette (EXAMPLE)*/
+export const c_brand_p_midnight_blue = css`#2A2B39`;
+export const c_brand_p_midnight_blue_dark = css`#181923`;
+export const c_brand_s_golden_yellow = css`#eec479`;
+export const c_brand_s_sand_beige = css`#F4F0E5`;
+
 /* Brand colors (REPLACE WITH YOUR OWN HERE)*/
-export const c_brand_primary = css`#302D2C`;
-export const c_brand_secondary = css`#e8d5b4`;
+export const c_brand_primary = c_brand_p_midnight_blue_dark;
+export const c_brand_secondary = c_brand_s_golden_yellow;
+export const c_brand_light = c_brand_s_sand_beige;
 
 /* Grey palatte color scale (TWO DIFFERENT EXAMPLE GREY-SCALE GROUP OPTIONS)*/
 export const c_black = css`#000000`;

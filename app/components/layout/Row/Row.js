@@ -17,6 +17,7 @@ export default props => {
 
   const styleProps = {
     alignTop: props.alignTop,
+    centered: props.centered,
     half: props.half,
     largeWidth: props.largeWidth,
     lastBottom: props.lastBottom,

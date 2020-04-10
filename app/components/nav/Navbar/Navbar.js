@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 
-import { c_grey_dark, c_white } from "../../../constants/styles/colors";
+import {
+  c_brand_primary,
+  c_brand_light
+} from "../../../constants/styles/colors";
 import { t_font_family } from "../../../constants/styles/typography";
 
 const Root = styled.div`
   align-items: center;
-  background-color: ${c_grey_dark};
+  background-color: ${c_brand_primary};
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -27,7 +30,7 @@ const Section = styled.div`
 
   a,
   h3 {
-    color: ${c_white};
+    color: ${c_brand_light};
     height: fit-content;
     margin: 0 2rem;
     text-decoration: none;

@@ -1,8 +1,13 @@
+import { connect } from "react-redux";
 import React, { useState } from "react";
 import moment from "moment";
 import styled from "styled-components";
 
 import { CheckboxGroup } from "../../components/controls/Checkbox/Checkbox";
+import {
+  renderModal,
+  setModalToggle
+} from "../../store/actions/actions-application";
 import Button from "../../components/controls/Button/Button";
 import CHECKBOX_GROUP_WITH_SUBOPTIONS from "../../constants/example/checkbox-group-with-suboptions";
 import DatePicker from "../../components/controls/Datepicker/Datepicker";
@@ -13,6 +18,7 @@ import Input from "../../components/controls/Input/Input";
 import Linespacer from "../../components/layout/Linespacer/Linespacer";
 import Loader from "../../components/display/Loader/Loader";
 import RadioButtons from "../../components/controls/RadioButtons/RadioButtons";
+import Row from "../../components/layout/Row/Row";
 import TABLE_HEADERS from "../../constants/example/table-headers";
 import TABLE_ROWS from "../../constants/example/table-rows";
 import Table from "../../components/display/Table/Table";
@@ -26,7 +32,7 @@ const Root = styled.div`
   width: 100%;
 `;
 
-export default () => {
+const Example = ({ renderModal }) => {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const [inputMatrix, setInputMatrix] = useState({
     testcheckboxgroup: [],
@@ -61,6 +67,18 @@ export default () => {
         [fieldName]: [...inputMatrix[fieldName].filter(i => i !== value)]
       });
     }
+  };
+
+  const handleRenderModal = () => {
+    renderModal({
+      children: (
+        <Row centered>
+          <h1>Example</h1>
+        </Row>
+      ),
+      header: true,
+      fixedWidth: true
+    });
   };
 
   const handleLoading = () => {
@@ -252,8 +270,26 @@ export default () => {
         </Button>
         <br />
         <Button onClick={handleLoading}>See Loading ...</Button>
+        <br />
+        <Button onClick={handleRenderModal}>Open Modal</Button>
         <Loader loading={loading} />
       </Form>
     </Root>
   );
 };
+
+const mapDispatchToModalProps = dispatch => {
+  return {
+    renderModal: boolean => {
+      dispatch(renderModal(boolean));
+    },
+    setModalToggle: boolean => {
+      dispatch(setModalToggle(boolean));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToModalProps
+)(Example);
