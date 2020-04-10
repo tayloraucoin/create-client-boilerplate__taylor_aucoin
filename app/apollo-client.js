@@ -5,7 +5,7 @@ const pointProduction = true;
 
 const apollo = new ApolloClient({
   uri: pointProduction
-    ? "https://api.theagoranetwork.com/graphql"
+    ? "https://api.example.com/graphql"
     : "http://localhost:8349/graphql",
   fetchOptions: {
     credentials: "include"
